@@ -10,9 +10,13 @@
 <!DOCTYPE html>
 <head>   
 <!-- Latest compiled and minified CSS -->
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js">
+</script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -34,6 +38,7 @@ crossorigin="anonymous">
     <div class="container-fluid"></div>
 
     <!-- Portfolio Grid Section -->
+    
     <div  class="container-fluid"><div class="row">
   <div class="col-md-1">.col-md-1</div>
   <div class="col-md-1">.col-md-2</div>
@@ -49,6 +54,8 @@ crossorigin="anonymous">
   <div class="col-md-1">.col-md-12</div>
 </div></div>
     
+    <div id="projects">
+    </div>
 
     <!-- About Section -->
    <div  class="container-fluid"></div>
@@ -60,6 +67,27 @@ crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 crossorigin="anonymous"></script>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAinSoHUiZHJ0uIJGC6tBmXJGO_U8L-8CY",
+    authDomain: "nia-portfolio.firebaseapp.com",
+    databaseURL: "https://nia-portfolio.firebaseio.com",
+    projectId: "nia-portfolio",
+    storageBucket: "nia-portfolio.appspot.com",
+    messagingSenderId: "31330111490"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+var projects_ref = database.ref('/projects');
+
+projects_ref.once('value', function(snapshot) {
+	var projects = snapshot.val();
+	console.log(projects);
+});
+</script>
 </body>
 
 </html>
