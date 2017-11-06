@@ -82,11 +82,31 @@ crossorigin="anonymous"></script>
   firebase.initializeApp(config);
   var database = firebase.database();
 var projects_ref = database.ref('/projects');
+console.log("firebase");
 
-projects_ref.once('value', function(snapshot) {
-	var projects = snapshot.val();
-	console.log(projects);
-});
+  projects_ref.once('value', function(snapshot) {
+  	var projects = snapshot.val(); 
+    for(var i in projects) {
+      var div = $('<div>');
+      var title = $('<h1>');
+      var image = $('<img>');
+      var site = $('<a>');
+      var source = $('<a>');
+      source.attr("href", projects[i].source_url);
+      source.text("source");
+      div.append(source);
+      site.attr("href", projects[i].site_url);
+      site.text("site");
+      div.append(site);
+      image.attr("src",projects[i].image_url);
+      div.append(image);
+      title.text(projects[i].title);
+      div.append(title);
+      $("#projects").append(div);
+    }
+  	console.log("string");
+  	console.log(projects);
+  });
 </script>
 </body>
 
